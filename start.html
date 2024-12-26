@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute Login Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            margin: 50px auto;
+            max-width: 600px;
+        }
+        .login-option {
+            display: inline-block;
+            margin: 20px;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: white;
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .login-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .login-option img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #003366;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+        body{
+            background-image: url("https://th.bing.com/th/id/OIP.H-fF4mQvWVVn_is1BPc3kAHaEn?rs=1&pid=ImgDetMain");
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Institution</h1>
+        <p>Your Learning, Our Priority</p>
+        <button id="register" onclick="location.href='registrationboth.html'">Register</button>
+        <style>
+            #register{
+                height: 50px;
+                width: 80px;
+                border-radius: 3px;
+                
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+        </style>
+    </header>
+    <div class="container">
+        <h2>Login Portal</h2>
+        <div class="login-option" onclick="location.href='student.html'">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqkZUtzfzfx1Q742HyOIfrdYbJuUbijcha_A&s" alt="Student Icon">
+            <h3>Student Login</h3>
+        </div>
+        <div class="login-option" onclick="location.href='teacherlogin.html'">
+            <img src="https://w7.pngwing.com/pngs/221/403/png-transparent-teacher-education-computer-icons-teacher-education-student-teacher-angle-text-class-thumbnail.png" alt="Teacher Icon">
+            <h3>Teacher Login</h3>
+        </div>
+    </div>
+    <footer>
+        <p>© [2024] kiet group of institution. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+</body>
+</html>

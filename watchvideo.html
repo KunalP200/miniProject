@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Watch</title>
+
+   <!-- Font Awesome CDN Link -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- Custom CSS File Link -->
+   <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<div class="side-bar"></div>
+
+<section class="watch-video">
+   <div class="video-container">
+      <div class="video">
+         <video src="images/vid-1.mp4" controls poster="images/post-1-1.png" id="video"></video>
+      </div>
+      <h3 class="title">Complete HTML Tutorial (Part 01)</h3>
+      <div class="info">
+         <p class="date"><i class="fas fa-calendar"></i><span>22-10-2022</span></p>
+         <p class="date"><i class="fas fa-heart"></i><span>44 likes</span></p>
+      </div>
+      <div class="tutor">
+         <img src="images/pic-2.jpg" alt="Tutor Image">
+         <div>
+            <h3>John Deo</h3>
+            <span>Developer</span>
+         </div>
+      </div>
+      <form action="" method="post" class="flex">
+         <a href="playlist.html" class="inline-btn">View Playlist</a>
+         <button type="button"><i class="far fa-heart"></i><span> Like</span></button>
+      </form>
+      <p class="description">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque labore ratione, hic exercitationem mollitia obcaecati culpa dolor placeat provident porro.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid iure autem non fugit sint. A, sequi rerum architecto dolor fugiat illo, iure velit nihil laboriosam cupiditate voluptatum facere cumque nemo!
+      </p>
+   </div>
+</section>
+
+<section class="comments">
+   <h1 class="heading">5 Comments</h1>
+
+   <form action="" class="add-comment">
+      <h3>Add Comment</h3>
+      <textarea name="comment_box" placeholder="Enter your comment" required maxlength="1000" cols="30" rows="10"></textarea>
+      <input type="submit" value="Add Comment" class="inline-btn" name="add_comment">
+   </form>
+
+   <h1 class="heading">User Comments</h1>
+
+   <div class="box-container">
+
+      <!-- Comment Box 1 -->
+      <div class="box">
+         <div class="user">
+            <img src="images/pic-1.jpg" alt="User Image">
+            <div>
+               <h3>Shaikh Anas</h3>
+               <span>22-10-2022</span>
+            </div>
+         </div>
+         <div class="comment-box">This is a comment from Shaikh Anas.</div>
+         <form action="" class="flex-btn">
+            <input type="submit" value="Edit Comment" name="edit_comment" class="inline-option-btn">
+            <input type="submit" value="Delete Comment" name="delete_comment" class="inline-delete-btn">
+         </form>
+      </div>
+
+      <!-- Additional Comment Boxes -->
+      <!-- Repeat similar structure for each comment -->
+      <div class="box">
+         <div class="user">
+            <img src="images/pic-2.jpg" alt="User Image">
+            <div>
+               <h3>John Deo</h3>
+               <span>22-10-2022</span>
+            </div>
+         </div>
+         <div class="comment-box">Awesome tutorial! Keep going!</div>
+      </div>
+
+      <div class="box">
+         <div class="user">
+            <img src="images/pic-3.jpg" alt="User Image">
+            <div>
+               <h3>John Deo</h3>
+               <span>22-10-2022</span>
+            </div>
+         </div>
+         <div class="comment-box">Amazing way of teaching! Thank you so much!</div>
+      </div>
+
+      <div class="box">
+         <div class="user">
+            <img src="images/pic-4.jpg" alt="User Image">
+            <div>
+               <h3>John Deo</h3>
+               <span>22-10-2022</span>
+            </div>
+         </div>
+         <div class="comment-box">Loved it, thanks for the tutorial!</div>
+      </div>
+
+      <div class="box">
+         <div class="user">
+            <img src="images/pic-5.jpg" alt="User Image">
+            <div>
+               <h3>Kunal</h3>
+               <span>22-10-2022</span>
+            </div>
+         </div>
+         <div class="comment-box">This is what I have been looking for! Thank you so much!</div>
+      </div>
+
+   </div>
+</section>
+
+<footer class="footer">
+   Made by Kunal and Krishna
+</footer>
+
+<!-- Custom JS File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

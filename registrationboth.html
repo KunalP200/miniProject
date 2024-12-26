@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration - Student & Teacher</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .registration-container {
+        width: 500px;
+        padding: 30px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .registration-container h2 {
+        margin-bottom: 20px;
+        color: #003366;
+        text-align: center;
+      }
+      .registration-container select,
+      .registration-container input[type="text"],
+      .registration-container input[type="email"],
+      .registration-container input[type="password"],
+      .registration-container button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .registration-container button {
+        background-color: #003366;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .registration-container button:hover {
+        background-color: #0055a4;
+      }
+      .additional-fields {
+        display: none;
+      }
+    </style>
+    <script>
+      function toggleFields() {
+        const userType = document.getElementById("userType").value;
+        const studentFields = document.getElementById("studentFields");
+        const teacherFields = document.getElementById("teacherFields");
+
+        // Show specific fields based on user type
+        if (userType === "student") {
+          studentFields.style.display = "block";
+          teacherFields.style.display = "none";
+        } else if (userType === "teacher") {
+          teacherFields.style.display = "block";
+          studentFields.style.display = "none";
+        } else {
+          studentFields.style.display = "none";
+          teacherFields.style.display = "none";
+        }
+      }
+
+    //   function showSuccessAlert(event) {
+    //     // Show a success alert when the form is submitted
+    //     event.preventDefault(); // Prevent form from submitting immediately
+
+    //     // Show success message
+    //     // alert("Successfully Registered!");
+
+    //     // Redirect to start.html after alert
+    //     window.location.href = "start.html"; // Redirect to the start page
+    //   }
+    </script>
+  </head>
+  <body>
+    <div class="registration-container">
+      <h2>Registration</h2>
+      <!-- <form
+        action="registration-handler.php"
+        method="POST"
+        onsubmit="showSuccessAlert(event)"
+      > -->
+        <!-- Select User Type -->
+        <select
+          id="userType"
+          name="user_type"
+          onchange="toggleFields()"
+          required
+        >
+          <option value="" >Select Role</option>
+          <option value="student" id="student">Student</option>
+          <option value="teacher" id="teacher">Teacher</option>
+        </select>
+
+        <!-- Common Fields -->
+        <input
+          type="text"
+          name="full_name"
+          placeholder="Full Name"
+          id="name_s"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          id="email_s"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          id="password_s"
+          required
+        />
+
+        <!-- Student-Specific Fields -->
+        <div id="studentFields" class="additional-fields">
+          <input
+            type="text"
+            name="student_id"
+            placeholder="Student ID"
+            id="student_id"
+          />
+          <input
+            type="text"
+            name="course"
+            placeholder="Course (e.g., MCA, BSc)"
+            id="course"
+          />
+          <input
+            type="text"
+            name="year"
+            placeholder="Year of Study"
+            id="year"
+          />
+        </div>
+
+        <!-- Teacher-Specific Fields -->
+        <div id="teacherFields" class="additional-fields">
+          <input type="text" name="teacher_id" placeholder="Teacher ID" id="teacher_id"/>
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject Specialization"
+            id="subject"
+          />
+          <input type="text" name="department" placeholder="Department" id="department"/>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submit">Register</button>
+      </form>
+    </div>
+
+    <script>
+      const value_ans = document.getElementById("userType");
+      let ans=0;
+      value_ans.addEventListener('change',(e)=>{
+        ans=e.target.value;
+      })
+      document.getElementById("submit").addEventListener("click", ()=> {
+      if (ans === "student") {
+        // document.getElementById("submit").addEventListener("click", () => {
+          const name_s = document.getElementById("name_s").value;
+          const email_s = document.getElementById("email_s").value;
+          const password_s = document.getElementById("password_s").value;
+          const student_id = document.getElementById("student_id").value;
+          const year = document.getElementById("year").value;
+          const course = document.getElementById("course").value;
+
+          const register = {
+            name: name_s,
+            email: email_s,
+            password: password_s,
+            studentId: student_id,
+            year: year,
+            course: course,
+          };
+
+          fetch("http://localhost:3000/register_stu", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(register),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message) {
+                alert(data.message);
+                window.location.href="C:/Users/hp/Downloads/kunal miniproject/kunal miniproject/e-learning-application-main/start.html";
+              } else {
+                alert(data.message);
+              }
+            })
+            .catch((err) => console.log("Error: ", err));
+        // });
+      }
+      else if(ans==="teacher"){
+        // document.getElementById("submit").addEventListener('click',()=>{
+          console.log("Welcome to Console");
+        const department = document.getElementById("department").value;
+        const teacherid = document.getElementById("teacher_id").value;
+        const name_s = document.getElementById("name_s").value;
+        const email_s = document.getElementById("email_s").value;
+        const password_s = document.getElementById("password_s").value;
+        const subject = document.getElementById("subject").value;
+
+
+        const detail = {
+            name: name_s,
+            email: email_s,
+            password: password_s,
+            teacherId: teacherid,
+            subject: subject,
+            department: department
+        }
+
+        fetch("http://localhost:3000/register_tea",{
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(detail)
+        })
+        .then(response=> response.json())
+        .then(data=>{
+            if(data.message){
+                alert(data.message)
+                window.location.href="C:/Users/hp/Downloads/kunal miniproject/kunal miniproject/e-learning-application-main/start.html";
+            }
+            else{
+                alert(error.message);
+            }
+        })
+        .catch((err) => console.log("Error: ", err));
+      }
+    })
+  
+    </script>
+  </body>
+</html>

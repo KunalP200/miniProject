@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses - Online Education</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    header, footer {
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      color: #4CAF50;
+    }
+    .course {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    .course h3 {
+      margin: 0;
+    }
+    .course p {
+      margin: 10px 0;
+    }
+    .course .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .course button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .view-button {
+      background: #4CAF50;
+      color: white;
+    }
+    .view-button:hover {
+      background: #45a049;
+    }
+    .buy-button {
+      background: #FF5722;
+      color: white;
+    }
+    .buy-button:hover {
+      background: #E64A19;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Education</h1>
+    <nav>
+      <a href="index1.html">Home</a>
+      <a href="courses1.html">Courses</a>
+      <a href="about1.html">About</a>
+      <a href="contact1.html">Contact us</a>
+      <a href="myCourses1.html">myCourses</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Available Courses</h2>
+    <div class="course">
+      <h3>Web Development</h3>
+      <p>Learn HTML, CSS, JavaScript, and build modern websites.</p>
+      <div class="actions">
+        <button class="view-button" onclick="location.href='web-development.html'">View Course Details</button>
+        <button class="buy-button" onclick="location.href='payment.html?course=Web Development'">Buy</button>
+      </div>
+    </div>
+    <div class="course">
+      <h3>Data Science</h3>
+      <p>Master Python, machine learning, and data analysis techniques.</p>
+      <div class="actions">
+        <button class="view-button" onclick="location.href='data-science.html'">View Course Details</button>
+        <button class="buy-button" onclick="location.href='payment.html?course=Data Science'">Buy</button>
+      </div>
+    </div>
+    <div class="course">
+      <h3>Graphic Design</h3>
+      <p>Explore tools like Photoshop and Illustrator to create stunning designs.</p>
+      <div class="actions">
+        <button class="view-button" onclick="location.href='graphic-design.html'">View Course Details</button>
+        <button class="buy-button" onclick="location.href='payment.html?course=Graphic Design'">Buy</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>made by kunal and krishna</p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('purchased-courses');
+    const videos = JSON.parse(localStorage.getItem('uploadedVideos')) || [];
+
+    if (videos.length === 0) {
+        container.innerHTML = '<p class="no-courses">No videos have been uploaded yet.</p>';
+    } else {
+        videos.forEach(video => {
+            const courseDiv = document.createElement('div');
+            courseDiv.className = 'course';
+            courseDiv.innerHTML = `
+                <h3>${video.title}</h3>
+                <p><strong>Subject:</strong> ${video.subject}</p>
+                <video controls width="100%">
+                    <source src="${video.videoURL}" type="${video.fileType}">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+            container.appendChild(courseDiv);
+        });
+    }
+});
+
+  </script>
+</body>
+</html>

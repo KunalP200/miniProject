@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
+        }
+        .login-container {
+            width: 400px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #00796b;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"],
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .login-container button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #004d40;
+        }
+        .login-container a {
+            display: block;
+            margin-top: 10px;
+            color: #00796b;
+            text-decoration: none;
+        }
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+   
+</head>
+<body>
+    <div href="/e-learning-application-main/home.html"></div>
+    <div class="login-container">
+        <h2>Student Login</h2>
+        <form onsubmit="handleLogin(event)">
+            <input type="text" name="username" placeholder="Student ID" id="student_id" required>
+            <input type="password" name="password" placeholder="Password" id="password" required>
+            <button type="button" id="submit_id">Login</button>
+        </form>
+        <a href="#">Forgot Password?</a>
+    </div>
+
+    <script>
+        // function handleLogin(event) {
+        //     // Prevent form submission to simulate login process
+        //     event.preventDefault();
+            
+        //     // Normally, you would validate the login here (with backend or JavaScript)
+        //     // If login is successful, redirect to home.html
+        //     window.location.href = "home.html"; // Redirect to home page after successful login
+        // }
+
+        document.getElementById("submit_id").addEventListener("click",()=>{
+            const student_id = document.getElementById("student_id").value;
+            const password = document.getElementById("password").value;
+
+            console.log(student_id);
+            console.log(password);
+
+            const loginDetails = {
+                username: student_id,
+                password: password
+            }
+            //send data to backend
+            fetch(/*Link*/'http://localhost:3000/student',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginDetails),
+            })
+            .then(response => response.json())
+            .then(data =>{
+                if(data.success){
+                    console.log("Ok");
+                    alert(data.message);
+                    window.location.href= "C:/Users/hp/Downloads/kunal miniproject/kunal miniproject/e-learning-application-main/studentandteacherpage/index1.html";
+                }
+                else{
+                    alert(data.error);
+                    console.log("Error in else");
+                }
+            })
+            .catch(error =>{
+                console.log("Error: ",error);      
+            })
+        })
+    </script>
+
+</body>
+</html>

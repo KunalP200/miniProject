@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Courses</title>
+    <style>
+        header {
+    background: #4CAF50;
+}
+header nav a {
+    color: #fff;
+    margin: 0 1rem;
+    text-decoration: none;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .video-list {
+            margin-top: 20px;
+        }
+        .list-item {
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background-color: #e60000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Onlne Education</h1>
+        <nav>
+            <a href="index1.html">Home</a>
+            <a href="courses1.html">Courses</a>
+            <a href="about1.html">About</a>
+            <a href="contact1.html">Contact us</a>
+            <a href="myCourses1.html">myCourses</a>
+            <a href="studentQuiz.html">Quiz Questions</a>
+          </nav>
+    </header>
+    <h1>My Courses</h1>
+    <div class="video-list" id="videoList">
+        <h2>Uploaded Videos</h2>
+        <!-- Dynamic video list will appear here -->
+    </div>
+
+    <script>
+        const videoList = document.getElementById('videoList');
+        let videos = JSON.parse(localStorage.getItem('uploadedVideos')) || [];
+    
+        // Function to render videos
+        function renderVideos() {
+            videoList.innerHTML = ''; // Clear existing videos
+    
+            videos.forEach((video, index) => {
+                const videoCard = document.createElement('div');
+                videoCard.className = 'list-item';
+                videoCard.innerHTML = `
+                    <h3>${video.title}</h3>
+                    <p><strong>Subject:</strong> ${video.subject}</p>
+                    <video controls width="100%">
+                        <source src="${video.videoURL}" type="${video.fileType}">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="delete-btn" data-index="${index}">Delete</button>
+                `;
+                videoList.appendChild(videoCard);
+            });
+    
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', deleteVideo);
+            });
+        }
+    
+        // Function to delete a video
+        function deleteVideo(event) {
+            const index = event.target.getAttribute('data-index'); // Get video index
+            videos.splice(index, 1); // Remove the video from the array
+            localStorage.setItem('uploadedVideos', JSON.stringify(videos)); // Update localStorage
+            renderVideos(); // Re-render the video list
+        }
+    
+        // Initial render
+        renderVideos();
+    </script>
+    
+</body>
+</html>

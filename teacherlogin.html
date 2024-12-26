@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ede7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            width: 400px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #512da8;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"],
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .login-container button {
+            background-color: #512da8;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #311b92;
+        }
+        .login-container a {
+            display: block;
+            margin-top: 10px;
+            color: #512da8;
+            text-decoration: none;
+        }
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Teacher Login</h2>
+        <form onsubmit="handleLogin(event)">
+            <input type="text" name="username" placeholder="Teacher ID" id="teacher_id" required>
+            <input type="password" name="password" placeholder="Password" id = "teacher_password" required>
+            <button type="button" id="teacher_submit">Login</button>
+        </form>
+        <a href="#">Forgot Password?</a>
+    </div>
+
+    <script>
+        document.getElementById("teacher_submit").addEventListener("click",()=>{
+            const teacher_id = document.getElementById("teacher_id").value;
+            const teacher_password = document.getElementById("teacher_password").value;
+
+            console.log(teacher_id);
+            console.log(teacher_password);
+
+            const loginDetails = {
+                username: teacher_id,
+                password: teacher_password
+            }
+
+            fetch("http://localhost:3000/teachers",{
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginDetails),
+            })
+            .then(response => response.json())
+            .then(data =>{
+                if(data.success){
+                    console.log("ok");
+                    alert(data.message);
+                    window.location.href = "C:/Users/hp/Downloads/kunal miniproject/kunal miniproject/e-learning-application-main/studentandteacherpage/teachersdashboard.html";
+                }
+                else{
+                    alert(data.error);
+                    console.log("Error in else");
+                }
+            })
+            .catch(error=>{
+                console.log("Error: ",error);
+            })
+        })
+    </script>
+</body>
+</html>

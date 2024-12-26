@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - Online Education</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    main {
+      padding: 20px;
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      color: #4CAF50;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select, button {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    footer {
+     /* background: #4CAF50;*/
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Education</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Payment Details</h2>
+    <form action="/submit-payment" method="POST">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="course">Select Course:</label>
+      <select id="course" name="course" required>
+        <option value="">--Select a Course--</option>
+        <option value="web-development">Web Development</option>
+        <option value="data-science">Data Science</option>
+        <option value="graphic-design">Graphic Design</option>
+      </select>
+
+      <label for="card-number">Card Number:</label>
+      <input type="text" id="card-number" name="card-number" placeholder="Enter your card number" required>
+
+      <label for="expiry-date">Expiry Date:</label>
+      <input type="month" id="expiry-date" name="expiry-date" required>
+
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
+
+      <button type="button" onclick="window.location.href='https://rzp.io/rzp/QyddAZT';">Make Payment</button>
+
+    </form>
+  </main>
+  <script>
+    // Extract course name from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseName = urlParams.get('course');
+  
+    // Display the course name in the form
+    if (courseName) {
+      document.getElementById('course').value = courseName;
+    }
+  </script>
+  
+
+  <footer>
+    <p>made by kunal and krishna</p>
+  </footer>
+</body>
+</html>
+

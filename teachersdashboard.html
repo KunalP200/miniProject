@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Video Upload</title>
+    <style>
+        header {
+    background: #4CAF50;
+}
+header {
+    
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zNzNiYXRjaDEzLTA4MS1rcHhrOWs1Zi5qcGc.jpg');
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="TeacherQuiz.html">Quiz Section</a>
+        </br>
+       </br>
+
+            <a href="teachersdashboard.html">Dashboard</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Teacher dashboard</h1>
+        <h1>Upload Video</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="subject">Select Subject:</label>
+            <select id="subject" name="subject" required>
+                <option value="" disabled selected>Select a subject</option>
+                <option value="math">javascript</option>
+                <option value="science">java</option>
+                <option value="history">Datascience</option>
+                <option value="english">Python</option>
+                <option value="computer">C++</option>
+            </select>
+
+            <label for="title">Video Title:</label>
+            <input type="text" id="title" name="title" placeholder="Enter video title" required>
+
+            <label for="video">Upload Video:</label>
+            <input type="file" id="video" name="video" accept="video/*" required>
+
+            <button type="submit">Upload Video</button>
+        </form>
+    </div>
+    <div class="footer">
+        &copy; 2024 E-Learning Platform
+    </div>
+    <script>
+        const form = document.querySelector('form');
+        form.onsubmit = function (event) {
+            event.preventDefault();
+    
+            const subject = document.getElementById('subject').value;
+            const title = document.getElementById('title').value;
+            const videoInput = document.getElementById('video');
+    
+            if (videoInput.files.length > 0) {
+                const file = videoInput.files[0];
+                const videoURL = URL.createObjectURL(file); // Temporary URL to represent the video file
+    
+                // Create a video object
+                const videoData = {
+                    subject,
+                    title,
+                    videoURL,
+                    fileType: file.type,
+                };
+    
+                // Save to localStorage
+                const videos = JSON.parse(localStorage.getItem('uploadedVideos')) || [];
+                videos.push(videoData);
+                localStorage.setItem('uploadedVideos', JSON.stringify(videos));
+    
+                alert('Video uploaded successfully!');
+                form.reset();
+            } else {
+                alert('Please select a video file!');
+            }
+        };
+    </script>
+    
+</body>
+</html>
